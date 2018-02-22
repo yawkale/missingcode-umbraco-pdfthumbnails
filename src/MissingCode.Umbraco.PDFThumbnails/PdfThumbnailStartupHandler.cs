@@ -37,6 +37,12 @@ namespace MissingCode.Umbraco.PdfThumbnail
                     continue;
                 }
 
+                if (!entity.HasProperty("umbracoFile"))
+                {
+                    LogHelper.Debug<PdfThumbnailStartupHandler>($"Entity {entity.Id} have no umbracoFile");
+                    continue;
+                }
+
                 try
                 {
                     var file = entity.GetValue<string>("umbracoFile");
